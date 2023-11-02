@@ -1,4 +1,5 @@
 import AcmeLogo from '@/app/ui/acme-logo';
+import styles from '@/app/ui/home.module.css';
 
 import Link from 'next/link';
 export default function Page() {
@@ -22,6 +23,7 @@ export default function Page() {
           >
             <span>Log in</span>
           </Link>
+          <div className={styles.shape}></div>
         </div>
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
           {/* Add Hero Images Here */}
