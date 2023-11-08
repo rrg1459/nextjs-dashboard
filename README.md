@@ -28,6 +28,11 @@ https://nextjs.org/learn/dashboard-app
 3. Optimizing Fonts and Images
 4. Creating Layouts and Pages
 5. Navigating Between Pages
-6. Setting Up Your Database (making)  
+6. Setting Up Your Database  
 ```npm i @vercel/postgres```  
 ```npm i bcrypt``` (hash user passwords)  
+7. Fetching Data
+8. Statis and Dynamic Rendering  
+9. Straming  
+10. Partial Prerendering(Optional) (making)
+https://nextjs.org/learn/dashboard-app/partial-prerendering
