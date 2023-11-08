@@ -37,6 +37,10 @@ export async function fetchRevenue() {
 export async function fetchLatestInvoices() {
   noStore();
   try {
+ 
+    console.log('Fetching lastet invoices data...');
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+ 
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
@@ -48,6 +52,9 @@ export async function fetchLatestInvoices() {
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
+
+    console.log('Data fetch complete after 2 seconds.');
+
     return latestInvoices;
   } catch (error) {
     console.error('Database Error:', error);
@@ -58,15 +65,19 @@ export async function fetchLatestInvoices() {
 export async function fetchCardData() {
   noStore();
   try {
+
+    console.log('Fetching cards data...');
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
     // how to initialize multiple queries in parallel with JS.
     const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
     const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
     const invoiceStatusPromise = sql`SELECT
-         SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
-         SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
-         FROM invoices`;
+          SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
+          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
+          FROM invoices`;
 
     const data = await Promise.all([
       invoiceCountPromise,
@@ -78,6 +89,8 @@ export async function fetchCardData() {
     const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
     const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
+
+    console.log('Data fetch complete after 1 second.');
 
     return {
       numberOfCustomers,
