@@ -9,23 +9,23 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
-// import { unstable_noStore as noStore } from 'next/cache';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
-  // noStore();
+  noStore();
 
   try {
     // Artificially delay a reponse for demo purposes.
     // Don't do this in real life :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch complete after 3 seconds.');
+    console.log('Data fetch complete after 3 seconds.');
 
     return data.rows;
   } catch (error) {
@@ -35,11 +35,11 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestInvoices() {
-  // noStore();
+  noStore();
   try {
  
-    // console.log('Fetching lastet invoices data...');
-    // await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log('Fetching lastet invoices data...');
+    await new Promise((resolve) => setTimeout(resolve, 2000));
  
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -53,7 +53,7 @@ export async function fetchLatestInvoices() {
       amount: formatCurrency(invoice.amount),
     }));
 
-    // console.log('Data fetch complete after 2 seconds.');
+    console.log('Data fetch complete after 2 seconds.');
 
     return latestInvoices;
   } catch (error) {
@@ -63,11 +63,11 @@ export async function fetchLatestInvoices() {
 }
 
 export async function fetchCardData() {
-  // noStore();
+  noStore();
   try {
 
-    // console.log('Fetching cards data...');
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log('Fetching cards data...');
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
@@ -90,7 +90,7 @@ export async function fetchCardData() {
     const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
-    // console.log('Data fetch complete after 1 second.');
+    console.log('Data fetch complete after 1 second.');
 
     return {
       numberOfCustomers,
@@ -109,7 +109,7 @@ export async function fetchFilteredInvoices(
   query: string,
   currentPage: number,
 ) {
-  // noStore();
+  noStore();
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
@@ -142,7 +142,7 @@ export async function fetchFilteredInvoices(
 }
 
 export async function fetchInvoicesPages(query: string) {
-  // noStore();
+  noStore();
   try {
     const count = await sql`SELECT COUNT(*)
     FROM invoices
@@ -164,7 +164,7 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchInvoiceById(id: string) {
-  // noStore();
+  noStore();
   try {
     const data = await sql<InvoiceForm>`
       SELECT
@@ -207,7 +207,7 @@ export async function fetchCustomers() {
 }
 
 export async function fetchFilteredCustomers(query: string) {
-  // noStore();
+  noStore();
   try {
     const data = await sql<CustomersTable>`
 		SELECT
