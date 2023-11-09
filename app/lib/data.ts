@@ -20,12 +20,12 @@ export async function fetchRevenue() {
     // Artificially delay a reponse for demo purposes.
     // Don't do this in real life :)
 
-    console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // console.log('Fetching revenue data...');
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    console.log('Data fetch complete after 3 seconds.');
+    // console.log('Data fetch complete after 3 seconds.');
 
     return data.rows;
   } catch (error) {
@@ -38,8 +38,8 @@ export async function fetchLatestInvoices() {
   noStore();
   try {
  
-    console.log('Fetching lastet invoices data...');
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // console.log('Fetching lastet invoices data...');
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
  
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -53,7 +53,7 @@ export async function fetchLatestInvoices() {
       amount: formatCurrency(invoice.amount),
     }));
 
-    console.log('Data fetch complete after 2 seconds.');
+    // console.log('Data fetch complete after 2 seconds.');
 
     return latestInvoices;
   } catch (error) {
@@ -66,8 +66,8 @@ export async function fetchCardData() {
   noStore();
   try {
 
-    console.log('Fetching cards data...');
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // console.log('Fetching cards data...');
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
@@ -90,7 +90,7 @@ export async function fetchCardData() {
     const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
-    console.log('Data fetch complete after 1 second.');
+    // console.log('Data fetch complete after 1 second.');
 
     return {
       numberOfCustomers,
