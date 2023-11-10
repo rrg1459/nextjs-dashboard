@@ -34,5 +34,7 @@ https://nextjs.org/learn/dashboard-app
 7. Fetching Data
 8. Statis and Dynamic Rendering  
 9. Straming  
-10. Partial Prerendering(Optional) (making)
-https://nextjs.org/learn/dashboard-app/partial-prerendering
+10. Partial Prerendering(Optional) (making)  
+11. Adding Search and Pagination   
+12. Mjutating Data  
+https://nextjs.org/learn/dashboard-app/mutating-data
