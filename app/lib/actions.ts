@@ -13,8 +13,13 @@ const InvoiceSchema = z.object({
   date: z.string(),
 });
 
+const FormSchema = z.object({
+  id: z.string(),
+});
+
 const CreateInvoice = InvoiceSchema.omit({ id: true, date: true });
 const UpdateInvoice = InvoiceSchema.omit({ date: true, id: true });
+const DeleteInvoice = FormSchema.omit({ date: true, id: true });
 
 export async function createInvoice(formData: FormData) {
   const { customerId, amount, status } = CreateInvoice.parse({
@@ -54,3 +59,7 @@ export async function updateInvoice(id: string, formData: FormData) {
   redirect('/dashboard/invoices');
 }
 
+export async function deleteInvoice(id: string) {
+  await sql`DELETE FROM invoices WHERE id = ${id}`;
+  revalidatePath('/dashboard/invoices');
+}
