@@ -37,4 +37,5 @@ https://nextjs.org/learn/dashboard-app
 10. Partial Prerendering(Optional) (making)  
 11. Adding Search and Pagination   
 12. Mjutating Data  
-https://nextjs.org/learn/dashboard-app/mutating-data
+13. Handling Errors  
+https://nextjs.org/learn/dashboard-app/error-handling
