@@ -9,7 +9,6 @@ export default async function Page({ params }: { params: { id: string } }) {
     fetchCustomers(),
   ]);
 
-  console.log('xxx invoice-->: ', invoice);
   return (
     <main>
       <Breadcrumbs
