@@ -8,6 +8,8 @@ export default async function Page({ params }: { params: { id: string } }) {
     fetchInvoiceById(id),
     fetchCustomers(),
   ]);
+
+  console.log('xxx invoice-->: ', invoice);
   return (
     <main>
       <Breadcrumbs
@@ -20,7 +22,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           },
         ]}
       />
-      <Form invoice={invoice} customers={customers} />
+      { invoice && <Form invoice={invoice} customers={customers} /> }
     </main>
   );
 }
