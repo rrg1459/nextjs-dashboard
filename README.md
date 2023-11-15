@@ -40,4 +40,5 @@ https://nextjs.org/learn/dashboard-app
 13. Handling Errors  
 14. Improving Accessibility  
 15. Adding Authentication  
-https://nextjs.org/learn/dashboard-app/adding-authentication
+16. Adding Metadata  
+https://nextjs.org/learn/dashboard-app/adding-metadata
